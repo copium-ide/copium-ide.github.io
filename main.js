@@ -13,8 +13,30 @@ async function insertData() {
 
     if (error) {
         console.error('Error inserting data:', error)
+        const newDiv = document.createElement('div');
+
+// 2. Set the background color to green
+newDiv.style.backgroundColor = 'red';
+
+// 3. Optionally, set other styles (e.g., width, height, etc.)
+newDiv.style.width = '100px';
+newDiv.style.height = '100px';
+
+// 4. Add the div to the document (e.g., to the body)
+document.body.appendChild(newDiv);
     } else {
         console.log('Data inserted successfully:', data)
+        const newDiv = document.createElement('div');
+
+// 2. Set the background color to green
+newDiv.style.backgroundColor = 'green';
+
+// 3. Optionally, set other styles (e.g., width, height, etc.)
+newDiv.style.width = '100px';
+newDiv.style.height = '100px';
+
+// 4. Add the div to the document (e.g., to the body)
+document.body.appendChild(newDiv);
     }
 }
 
