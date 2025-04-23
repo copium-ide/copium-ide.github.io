@@ -4,7 +4,10 @@
   "description": "backend handled through https://supabase.com",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts": {
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy":   "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,9 @@
     "webpack": "^5.99.6"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "webpack-cli": "^6.0.1"
-  }
+  },
+  "homepage": "https://<your-github-user>.github.io/<your-repo-name>"
+}
 }
