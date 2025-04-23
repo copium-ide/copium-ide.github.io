@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: NodeJS with Webpack + GitHub Pages
 
 permissions:
   contents: read
@@ -7,32 +7,45 @@ permissions:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-      - name: Install & Build
-        run: |
-          npm ci
-          npx webpack --config webpack.config.js
+      - name: Install dependencies
+        run: npm install
 
-      - name: Configure Pages
+      - name: Build with Webpack
+        run: npx webpack --config webpack.config.js
+
+      # Optional: upload built assets for debugging or preview
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: webpack-build
+          path: ./dist
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v3
 
-      # ← Only this uploader for GitHub Pages
-      - name: Upload artifact for Pages
+      - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./dist
@@ -41,10 +54,7 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           publish_dir: ./dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_branch: gh-pages
-          destination_repo: ${{ github.repository }}
-          commit_message: Deploy to GitHub Pages
-          commit_author_name: GitHub Actions
-          commit_author_email:
+          publish_dir: ./dist
+          commit_message: "deploy to GitHub Pages"
