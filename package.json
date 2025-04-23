@@ -12,5 +12,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "webpack": "^5.99.6"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
