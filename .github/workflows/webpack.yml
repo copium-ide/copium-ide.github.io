@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS with Webpack + GitHub Pages
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,16 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build bundle
         run: npx webpack
 
-      - name: Set Git identity
-        run: |
-          git config --global user.name "halufun"
-          git config --global user.email "frogillius@hotmail.com"
       - name: Deploy to GitHub Pages
-        env:
-          CI: true
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
 
