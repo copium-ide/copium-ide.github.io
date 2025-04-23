@@ -23,7 +23,7 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Install dependencies & build
+      - name: Install & Build
         run: |
           npm ci
           npx webpack --config webpack.config.js
@@ -31,6 +31,7 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v3
 
+      # ← Only this uploader for GitHub Pages
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v1
         with:
