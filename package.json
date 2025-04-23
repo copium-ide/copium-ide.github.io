@@ -4,7 +4,6 @@
   "description": "backend handled through https://supabase.com",
   "main": "main.js",
   "scripts": {
-    "scripts": {
     "build": "webpack",
     "predeploy": "npm run build",
     "deploy":   "gh-pages -d dist"
@@ -21,5 +20,4 @@
     "webpack-cli": "^6.0.1"
   },
   "homepage": "https://<your-github-user>.github.io/<your-repo-name>"
-}
 }
