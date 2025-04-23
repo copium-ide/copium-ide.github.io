@@ -52,8 +52,3 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        with:
-          publish_dir: ./dist
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          commit_message: "deploy to GitHub Pages"
