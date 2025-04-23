@@ -1,0 +1,16 @@
+{
+  "name": "copium-ide.github.io",
+  "version": "1.0.0",
+  "description": "backend handled through https://supabase.com",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "express": "^5.1.0"
+  }
+}
