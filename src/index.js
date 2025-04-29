@@ -31,10 +31,10 @@ function init() {
     const passInput = document.getElementById("password");
     const email = emailInput.value;
     const password = passInput.value;
-    register.addEventListener("click", function (e) {
+    register.addEventListener("click", function () {
         register(email, password);
     });
-    login.addEventListener("click", function (e) {
+    login.addEventListener("click", function () {
         login(email, password);
     });
 }
