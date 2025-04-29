@@ -25,8 +25,40 @@
   </head>
   <body>
   <p>copium-ide hehehe</p>
+  <input id="login" type="button" value="Login">
+  <input id="register" type="button" value="Register">
+    <label for="email">email</label>
+    <input
+      type="text"
+      id="email"
+      name="email"
+      required
+      size="10" />
+    <label for="password">password</label>
+    <input
+      type="text"
+      id="password"
+      name="password"
+      required
+      minlength="8"
+      size="10" />
 <script src="https://copium-ide.github.io/blocks/eruda.js"></script>
 <script>eruda.init();</script>
+<script defer="defer" src="main.js"></script>
+<script>
+  const register = document.getElementByID("register");
+  const login = document.getElementByID("login");
+  const emailInput = document.getElementByID("email");
+  const passInput = document.getElementByID("password");
+  const email = emailInput.value;
+  const password = passInput.value;
+  register.addEventListener("click", function (e) {
+    register(email, password);
+  });
+  login.addEventListener("click", function (e) {
+    login(email, password);
+  });
+</script>
 
 </body>
 </html>
