@@ -68,8 +68,8 @@ module.exports = {
       patterns: [
         // Copy contents of public/static to dist/static
         {
-          from: 'public/static', // Source directory/file
-          to: 'static',         // Destination directory within 'dist'
+          from: 'public', // Source directory/file
+          to: '.',         // Destination directory within 'dist'
           noErrorOnMissing: true // Prevents errors if 'public/static' doesn't exist
           // globOptions: { // Optional: ignore specific files within the source
           //   ignore: ['**/ignored-file.txt'],
