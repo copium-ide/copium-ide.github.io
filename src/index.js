@@ -29,6 +29,16 @@ async function google() {
       provider: 'google',
     })
 }
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.error('Error signing out:', error.message);
+  } else {
+     console.log('User signed out successfully.');
+    // The onAuthStateChange listener will handle UI updates for SIGNED_OUT
+    // Or call clearUserProfile() directly if not using the listener
+  }
+}
 function init() {
     const registerButton = document.getElementById("register");
     const loginButton = document.getElementById("login");
@@ -37,6 +47,10 @@ function init() {
     const email = emailInput.value;
     const password = passInput.value;
     const googleButton = document.getElementById("google");
+    const logoutButton = document.getElementById("logout");
+    logoutButton.addEventListener("click", function (e) {
+        logout();
+    });
     googleButton.addEventListener("click", function (e) {
         google();
     });
