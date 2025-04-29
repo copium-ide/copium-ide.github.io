@@ -10,7 +10,6 @@ module.exports = {
     // Generates an HTML file, injecting the bundled JavaScript.
     new HtmlWebpackPlugin({
       template: './public/index.html', // Path to your HTML template file
-      inject: 'body',
     }),
 
     // Copies files BUT ignores the HTML template used by HtmlWebpackPlugin
