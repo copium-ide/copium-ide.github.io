@@ -49,7 +49,7 @@ function init() {
     const googleButton = document.getElementById("google");
     const logoutButton = document.getElementById("logout");
     logoutButton.addEventListener("click", function (e) {
-        logout();
+        signOut();
     });
     googleButton.addEventListener("click", function (e) {
         google();
