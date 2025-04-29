@@ -31,9 +31,10 @@ module.exports = {
       template: './public/index.html',  // your HTML template
       inject: 'body',                   // where to inject <script>
     }),
+    // In webpack.config.js plugins:
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'public/static', to: 'static' }, // copy all files under public/static
+      patterns: [,
+        { from: 'public/static', to: '.' },
       ],
     }),
   ],
