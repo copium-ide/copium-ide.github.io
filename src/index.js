@@ -24,6 +24,11 @@ async function login(email, password) {
 async function changePassword(password) {
     await supabase.auth.updateUser({ password: password })
 }
+async function google() {
+    supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+}
 function init() {
     const registerButton = document.getElementById("register");
     const loginButton = document.getElementById("login");
@@ -31,6 +36,10 @@ function init() {
     const passInput = document.getElementById("password");
     const email = emailInput.value;
     const password = passInput.value;
+    const googleButton = document.getElementById("google");
+    googleButton.addEventListener("click", function (e) {
+        google();
+    });
     registerButton.addEventListener("click", function (e) {
         register(email, password);
     });
