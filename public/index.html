@@ -44,21 +44,7 @@
       size="10" />
 <script src="https://copium-ide.github.io/blocks/eruda.js"></script>
 <script>eruda.init();</script>
-<script type="module">
-  import * as account from "/main.js";
-  const register = document.getElementById("register");
-  const login = document.getElementById("login");
-  const emailInput = document.getElementById("email");
-  const passInput = document.getElementById("password");
-  const email = emailInput.value;
-  const password = passInput.value;
-  register.addEventListener("click", function (e) {
-    account.register(email, password);
-  });
-  login.addEventListener("click", function (e) {
-    account.login(email, password);
-  });
-</script>
+<script src="main.js"></script>
 
 </body>
   
