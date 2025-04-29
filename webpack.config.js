@@ -6,10 +6,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   // ... other config sections ...
 
+  optimization: {
+        minimize: false
+  },
   plugins: [
     // Generates an HTML file, injecting the bundled JavaScript.
     new HtmlWebpackPlugin({
       template: './public/index.html', // Path to your HTML template file
+      
     }),
 
     // Copies files BUT ignores the HTML template used by HtmlWebpackPlugin
