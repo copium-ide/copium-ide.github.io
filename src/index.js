@@ -25,14 +25,14 @@ async function changePassword(password) {
     await supabase.auth.updateUser({ password: password })
 }
 const register = document.getElementById("register");
-  const login = document.getElementById("login");
-  const emailInput = document.getElementById("email");
-  const passInput = document.getElementById("password");
-  const email = emailInput.value;
-  const password = passInput.value;
-  register.addEventListener("click", function (e) {
-    account.register(email, password);
-  });
-  login.addEventListener("click", function (e) {
-    account.login(email, password);
-  });
+const login = document.getElementById("login");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
+const email = emailInput.value;
+const password = passInput.value;
+register.addEventListener("click", function (e) {
+    register(email, password);
+});
+login.addEventListener("click", function (e) {
+    login(email, password);
+});
