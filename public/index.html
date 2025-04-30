@@ -24,6 +24,18 @@
 <!-- Meta Tags Generated via https://www.opengraph.xyz -->
   </head>
   <body>
+    <script>
+      async function handleSignInWithGoogle(response) {
+      console.log("signin completed");
+      const { data, error } = await supabase.auth.signInWithIdToken({
+        provider: 'google',
+        token: response.credential,
+      })
+      if (error) {
+        console.log(error);
+      }
+    }
+    </script>
     <script src="https://accounts.google.com/gsi/client" async></script>
     <div id="g_id_onload"
      data-client_id="1038706171073-2327cs6k03503s3g1us872op95q3rddq.apps.googleusercontent.com"
