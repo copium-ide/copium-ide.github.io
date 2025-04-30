@@ -5,10 +5,14 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function handleSignInWithGoogle(response) {
+  console.log("signin completed");
   const { data, error } = await supabase.auth.signInWithIdToken({
     provider: 'google',
     token: response.credential,
   })
+  if (error) {
+    console.log(error);
+  }
 }
 async function register(email, password) {
     const { data, error } = await supabase.auth.signUp({
