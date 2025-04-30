@@ -4,16 +4,7 @@ const supabaseUrl = 'https://bmkocgtuwuwdoakptqan.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJta29jZ3R1d3V3ZG9ha3B0cWFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ2NDk1NzAsImV4cCI6MjA2MDIyNTU3MH0.Hi5KxIT8T9jED2JbHO25TcdUcBFDfCPHgPxOttjezEo';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-async function handleSignInWithGoogle(response) {
-  console.log("signin completed");
-  const { data, error } = await supabase.auth.signInWithIdToken({
-    provider: 'google',
-    token: response.credential,
-  })
-  if (error) {
-    console.log(error);
-  }
-}
+
 async function register(email, password) {
     const { data, error } = await supabase.auth.signUp({
     email: email,
