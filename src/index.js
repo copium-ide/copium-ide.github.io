@@ -55,14 +55,23 @@ function getInfo() {
       const password = passInput.value;
       return {email, password};
 }
-function init() {
-    const registerButton = document.getElementById("register");
-    const loginButton = document.getElementById("login");
-    const emailInput = document.getElementById("email");
-    const passInput = document.getElementById("password");
+
+const registerButton;
+const loginButton;
+const emailInput;
+const passInput;
     
-    const googleButton = document.getElementById("google");
-    const logoutButton = document.getElementById("logout");
+const googleButton;
+const logoutButton;
+
+function init() {
+    registerButton = document.getElementById("register");
+    loginButton = document.getElementById("login");
+    emailInput = document.getElementById("email");
+    passInput = document.getElementById("password");
+    
+    googleButton = document.getElementById("google");
+    logoutButton = document.getElementById("logout");
     logoutButton.addEventListener("click", function (e) {
         signOut();
     });
