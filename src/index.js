@@ -50,13 +50,17 @@ async function signOut() {
     // Or call clearUserProfile() directly if not using the listener
   }
 }
+function getInfo() {
+      const email = emailInput.value;
+      const password = passInput.value;
+      return {email, password};
+}
 function init() {
     const registerButton = document.getElementById("register");
     const loginButton = document.getElementById("login");
     const emailInput = document.getElementById("email");
     const passInput = document.getElementById("password");
-    const email = emailInput.value;
-    const password = passInput.value;
+    
     const googleButton = document.getElementById("google");
     const logoutButton = document.getElementById("logout");
     logoutButton.addEventListener("click", function (e) {
@@ -66,10 +70,10 @@ function init() {
         google();
     });
     registerButton.addEventListener("click", function (e) {
-        register(email, password);
+        register(getInfo());
     });
     loginButton.addEventListener("click", function (e) {
-        login(email, password);
+        login(getInfo());
     });
 }
 init();
