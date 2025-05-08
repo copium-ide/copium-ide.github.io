@@ -56,13 +56,13 @@ function getInfo() {
       return {email, password};
 }
 
-const registerButton;
-const loginButton;
-const emailInput;
-const passInput;
+const registerButton = null;
+const loginButton = null;
+const emailInput = null;
+const passInput = null;
     
-const googleButton;
-const logoutButton;
+const googleButton = null;
+const logoutButton = null;
 
 function init() {
     registerButton = document.getElementById("register");
