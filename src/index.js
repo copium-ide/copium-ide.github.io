@@ -18,6 +18,7 @@ async function handleSignInWithGoogle(response) {
     }
 
 async function register(info) {
+      console.log(info);
     const { data, error } = await supabase.auth.signUp({
     email: info.email,
     password: info.password,
