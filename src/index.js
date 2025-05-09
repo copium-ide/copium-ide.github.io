@@ -61,7 +61,7 @@ function getInfo() {
     
       const email = emailInput.value;
       const password = passInput.value;
-      return {email, password};
+      return {'email': email,'password': password};
 }
 
 
