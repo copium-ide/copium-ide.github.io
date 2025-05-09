@@ -17,20 +17,20 @@ async function handleSignInWithGoogle(response) {
       }
     }
 
-async function register(email, password) {
+async function register(info) {
     const { data, error } = await supabase.auth.signUp({
-    email: email,
-    password: password,
+    email: info.email,
+    password: info.password,
     options: {
       emailRedirectTo: 'https://copium-ide.github.io',
     },
   });
     console.log(data, error);
 }
-async function login(email, password) {
+async function login(info) {
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: email,
-    password: password,
+    email: info.email,
+    password: info.password,
   });
     console.log(data, error);
 }
