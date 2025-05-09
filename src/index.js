@@ -4,6 +4,43 @@ const supabaseUrl = 'https://bmkocgtuwuwdoakptqan.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJta29jZ3R1d3V3ZG9ha3B0cWFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ2NDk1NzAsImV4cCI6MjA2MDIyNTU3MH0.Hi5KxIT8T9jED2JbHO25TcdUcBFDfCPHgPxOttjezEo';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Find the container and create the elements within it
+  const containerElement = createProfileDisplayElements('user-profile-container');
+  const registerButton = document.getElementById("register");
+  const loginButton = document.getElementById("login");
+  const emailInput = document.getElementById("email");
+  const passInput = document.getElementById("password");
+    
+  const googleButton = document.getElementById("google");
+  const logoutButton = document.getElementById("logout");
+
+  if (containerElement) {
+    // Check the current session state when the page loads
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error("Error getting initial session:", error.message);
+        displayUserProfile(null); // Show not logged in on error
+      } else {
+        console.log('Initial session check complete.');
+        // Display profile based on whether a session exists
+        // The onAuthStateChange listener might fire immediately after this
+        // anyway, but calling displayUserProfile here ensures the UI updates
+        // promptly based on the initial check result.
+        displayUserProfile(session?.user ?? null);
+      }
+    }).catch(err => {
+      console.error("Catch: Failed to get initial session:", err);
+      displayUserProfile(null); // Show not logged in on failure
+    });
+  } else {
+      // Handle case where the container wasn't found
+      console.error("Profile container div not found in HTML.");
+      // Optionally display an error message elsewhere in the body
+      // document.body.insertAdjacentHTML('afterbegin', '<p style="color: red;">Error: Profile container not found!</p>');
+  }
+});
+
 async function handleSignInWithGoogle(response) {
       console.log("signin completed");
       const { data, error } = await supabase.auth.signInWithIdToken({
@@ -161,40 +198,5 @@ supabase.auth.onAuthStateChange((event, session) => {
 });
 
 // --- 6. Initial Load Logic ---
-document.addEventListener('DOMContentLoaded', () => {
-  // Find the container and create the elements within it
-  const containerElement = createProfileDisplayElements('user-profile-container');
-  const registerButton = document.getElementById("register");
-  const loginButton = document.getElementById("login");
-  const emailInput = document.getElementById("email");
-  const passInput = document.getElementById("password");
-    
-  const googleButton = document.getElementById("google");
-  const logoutButton = document.getElementById("logout");
 
-  if (containerElement) {
-    // Check the current session state when the page loads
-    supabase.auth.getSession().then(({ data: { session }, error }) => {
-      if (error) {
-        console.error("Error getting initial session:", error.message);
-        displayUserProfile(null); // Show not logged in on error
-      } else {
-        console.log('Initial session check complete.');
-        // Display profile based on whether a session exists
-        // The onAuthStateChange listener might fire immediately after this
-        // anyway, but calling displayUserProfile here ensures the UI updates
-        // promptly based on the initial check result.
-        displayUserProfile(session?.user ?? null);
-      }
-    }).catch(err => {
-      console.error("Catch: Failed to get initial session:", err);
-      displayUserProfile(null); // Show not logged in on failure
-    });
-  } else {
-      // Handle case where the container wasn't found
-      console.error("Profile container div not found in HTML.");
-      // Optionally display an error message elsewhere in the body
-      // document.body.insertAdjacentHTML('afterbegin', '<p style="color: red;">Error: Profile container not found!</p>');
-  }
-});
 
