@@ -178,8 +178,42 @@ footer {
     to { opacity: 1; }
 }
 
+/* --- MOBILE SCALING RULES --- */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    section { padding: 30px 20px; }
+    body {
+        /* Slightly reduce base font size on mobile */
+        font-size: 0.95rem;
+    }
+
+    .main-header {
+        /* Reduce the large percentage padding for smaller screens */
+        padding: 40px 20px;
+    }
+
+    main {
+        /* Reduce main content padding */
+        padding: 20px;
+    }
+
+    h1 { 
+        font-size: 2.5rem; 
+    }
+
+    h2 { 
+        font-size: 2rem; 
+    }
+
+    section { 
+        /* Override the large percentage padding from the desktop rule */
+        padding: 30px 20px; 
+        border-radius: 24px;
+    }
+
+    .animation-container {
+        /* Scale the entire animation block down to 80% of its size */
+        transform: scale(0.8);
+        /* Adjust margin to prevent it from taking up too much vertical space */
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
 }
