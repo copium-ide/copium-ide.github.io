@@ -1,3 +1,5 @@
+
+// so sigma ikr
 document.addEventListener('DOMContentLoaded', () => {
 
     const sections = document.querySelectorAll('.scroll-fade');
