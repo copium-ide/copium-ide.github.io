@@ -12,24 +12,26 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     line-height: 1.6;
+    font-size: 1rem; /* Base font size */
 }
+
+/* --- BASE & MOBILE STYLES (Mobile First) --- */
 
 .main-header {
     text-align: center;
-    padding: 60px 20px;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding: 40px 20px;
     background-color: var(--background-color);
 }
 
 h1 {
-    font-size: 3rem;
+    /* Fluid Typography: scales from 2.25rem to 3rem based on viewport width */
+    font-size: clamp(2.25rem, 1.91rem + 1.7vw, 3rem);
     margin-bottom: 0.5rem;
     color: #fff;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
     text-align: center;
     margin-bottom: 1rem;
     color: #fff;
@@ -42,18 +44,15 @@ h3 {
 
 main {
     max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    padding-left: 10%;
-    padding-right: 10%;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
 section {
     background-color: var(--background-color);
-    padding: 10%;
-    padding-top: 5%;
+    padding: 30px 20px;
     margin-bottom: 30px;
-    border-radius: 32px;
+    border-radius: 24px;
     border: 1px solid #333;
     opacity: 0;
     transform: translateY(20px);
@@ -81,139 +80,80 @@ section.is-visible {
     background-color: #6ba876;
 }
 
-#core-editor ul {
-    list-style: none;
-    padding: 0;
-}
+#core-editor ul { list-style: none; padding: 0; }
+#core-editor li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+#core-editor li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); }
 
-#core-editor li {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
+.features-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
+.feature-card { background-color: var(--card-color); padding: 25px; border-radius: 8px; border-left: 4px solid var(--accent-color); }
 
-#core-editor li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.feature-card {
-    background-color: var(--card-color);
-    padding: 25px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-color);
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--background-color);
-    color: #aaa;
-    margin-top: 40px;
-}
+footer { text-align: center; padding: 20px; background-color: var(--background-color); color: #aaa; margin-top: 40px; }
 
 /* Animation */
 .animation-container {
-    margin: 40px auto;
+    margin: 20px auto 0;
     width: 128px;
-    height: 144px; /* 3 * 48px height */
+    height: 144px;
     position: relative;
+    transform: scale(0.8); /* Scaled down for mobile */
+    transform-origin: center top;
 }
 
 .box {
     position: absolute;
     width: 128px;
     height: 48px;
-    /* Change left from 50% to 0 to align with the container's edge */
     left: 0; 
-    
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.box1 {
-    animation-name: snap1;
-}
+.box1 { animation-name: snap1; }
+.box2 { animation-name: snap2; }
+.box3 { animation-name: snap3; }
 
-.box2 {
-    animation-name: snap2;
-}
-
-.box3 {
-    animation-name: snap3;
-}
-
-/* Removed the horizontal (-50%) component from all transforms */
-@keyframes snap1 {
-    from { transform: translateY(48px); opacity: 0; }
-    to { transform: translateY(0px); opacity: 1; }
-}
-@keyframes snap2 {
-    from { transform: translateY(180px); opacity: 0; }
-    to { transform: translateY(45px); opacity: 1; }
-}
-@keyframes snap3 {
-    from { transform: translateY(360px); opacity: 0; }
-    to { transform: translateY(90px); opacity: 1; }
-}
-
+@keyframes snap1 { from { transform: translateY(48px); opacity: 0; } to { transform: translateY(0px); opacity: 1; } }
+@keyframes snap2 { from { transform: translateY(180px); opacity: 0; } to { transform: translateY(45px); opacity: 1; } }
+@keyframes snap3 { from { transform: translateY(360px); opacity: 0; } to { transform: translateY(90px); opacity: 1; } }
 
 /* Initial Fade-in for Header */
-.fade-in {
-    animation: fadeInHeader 1s ease-in-out forwards;
-}
+.fade-in { animation: fadeInHeader 1s ease-in-out forwards; }
+@keyframes fadeInHeader { from { opacity: 0; } to { opacity: 1; } }
 
-@keyframes fadeInHeader {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
 
-/* --- MOBILE SCALING RULES --- */
-@media (max-width: 768px) {
-    body {
-        /* Slightly reduce base font size on mobile */
-        font-size: 0.95rem;
-    }
-
+/* --- TABLET & SMALL DESKTOP STYLES (Breakpoint 1) --- */
+@media (min-width: 768px) {
     .main-header {
-        /* Reduce the large percentage padding for smaller screens */
-        padding: 40px 20px;
+        padding: 60px 20px;
+        padding-left: 25%;
+        padding-right: 25%;
     }
 
     main {
-        /* Reduce main content padding */
-        padding: 20px;
+        padding: 0 40px;
     }
 
-    h1 { 
-        font-size: 2.5rem; 
+    section {
+        padding: 40px;
+        border-radius: 32px;
     }
 
-    h2 { 
-        font-size: 2rem; 
-    }
-
-    section { 
-        /* Override the large percentage padding from the desktop rule */
-        padding: 30px 20px; 
-        border-radius: 24px;
+    .features-grid {
+        /* Use two columns on tablets */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .animation-container {
-        /* Scale the entire animation block down to 80% of its size */
-        transform: scale(0.8);
-        /* Adjust margin to prevent it from taking up too much vertical space */
-        margin-top: 20px;
-        margin-bottom: 0;
+        transform: scale(1); /* Return to full scale */
+        margin: 40px auto;
+    }
+}
+
+/* --- LARGE DESKTOP STYLES (Breakpoint 2) --- */
+@media (min-width: 1024px) {
+    .features-grid {
+        /* Use four columns on large screens */
+        grid-template-columns: repeat(4, 1fr);
     }
 }
